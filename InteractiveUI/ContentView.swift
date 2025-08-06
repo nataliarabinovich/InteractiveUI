@@ -11,6 +11,8 @@ struct ContentView: View {
     @State private var firstName = ""
     @State private var textTitle = "What is your full name?"
     @State private var lastName = ""
+    @State private var presentAlert = false
+
     var body: some View {
         VStack {
             Text(textTitle)
@@ -24,6 +26,7 @@ struct ContentView: View {
                 .font(.title)
                 .border(Color.gray, width: 1)
             Button("Submit") {
+                presentAlert = true
                 textTitle = "Welcome, \(firstName) \(lastName)!"
                 firstName = ""
                 lastName = ""
@@ -33,6 +36,11 @@ struct ContentView: View {
             .tint(.cyan)
         }
         .padding()
+        .alert("Thank you!", isPresented: $presentAlert, actions: {
+        }, message: {
+            Text("Your name has been received")
+        })
+
     }
 }
 
