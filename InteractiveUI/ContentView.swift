@@ -8,19 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var name = ""
-    @State private var textTitle = "What is your name?"
+    @State private var firstName = ""
+    @State private var textTitle = "What is your full name?"
+    @State private var lastName = ""
     var body: some View {
         VStack {
             Text(textTitle)
                 .font(.title)
-            TextField("Type your name here...", text: $name)
+            TextField("Type your first name here...", text: $firstName)
                 .multilineTextAlignment(.center)
                 .font(.title)
                 .border(Color.gray, width: 1)
-            Button("Submit Name") {
-                textTitle = "Welcome, \(name)!"
-                name = ""
+            TextField("Type your last name here...", text: $lastName)
+                .multilineTextAlignment(.center)
+                .font(.title)
+                .border(Color.gray, width: 1)
+            Button("Submit") {
+                textTitle = "Welcome, \(firstName) \(lastName)!"
+                firstName = ""
+                lastName = ""
             }
             .font(.title2)
             .buttonStyle(.borderedProminent)
